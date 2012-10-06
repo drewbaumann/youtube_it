@@ -77,6 +77,7 @@ end
   model/user
   model/video
   model/activity
+  model/channel
   request/base_search
   request/error
   request/user_search

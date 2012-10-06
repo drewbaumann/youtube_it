@@ -293,6 +293,10 @@ class YouTubeIt
       client.new_subscription_videos(user_id)
     end
 
+    def analytics(opts = {})
+      client.get_analytics(opts)
+    end
+
     private
 
     def client

@@ -611,6 +611,20 @@ class YouTubeIt
           :videos             => videos)
       end
     end
+
+    class AnalyticsParser < FeedParser #:nodoc:
+
+    private
+      def parse_content(content)
+        entry = JSON.parse(content)
+        result = {}
+
+        (1 .. entry['columnHeaders'].size-1).each {|i| result[entry['columnHeaders'][i]['name']] = entry['rows'][0][i]}
+        
+        YouTubeIt::Model::Channel.new(result)
+
+      end
+    end
   end
 end
 
