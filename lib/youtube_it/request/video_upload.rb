@@ -454,14 +454,19 @@ class YouTubeIt
       end
 
       def get_analytics(opts)
-        # max_results = opts[:per_page] || 50
-        # start_index = ((opts[:page] || 1) -1) * max_results +1
-        get_url     = "/youtube/analytics/v1/reports?"
-        get_url     << opts.collect { |k,p| [k,p].join '=' }.join('&')
-        response    = yt_session('https://www.googleapis.com').get(get_url)
-
-        return YouTubeIt::Parser::AnalyticsParser.new(response.body).parse
+        analytics = YouTubeIt::Request::ChannelAnalytics.new
+        analytics.get_analytics(opts)
       end
+
+      # def get_analytics(opts)
+      #   # max_results = opts[:per_page] || 50
+      #   # start_index = ((opts[:page] || 1) -1) * max_results +1
+      #   get_url     = "/youtube/analytics/v1/reports?"
+      #   get_url     << opts.collect { |k,p| [k,p].join '=' }.join('&')
+      #   response    = yt_session('https://www.googleapis.com').get(get_url)
+
+      #   return YouTubeIt::Parser::AnalyticsParser.new(response.body).parse
+      # end
 
       private
 

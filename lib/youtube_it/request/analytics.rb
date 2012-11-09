@@ -1,5 +1,5 @@
 class YouTubeIt
-  module Analytics #:nodoc:
+  module Request #:nodoc:
     class ChannelAnalytics #:nodoc:
 
       include YouTubeIt::Logging
@@ -57,9 +57,6 @@ class YouTubeIt
 
         end
       end
-
-
-
     end
   end
 end
