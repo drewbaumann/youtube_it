@@ -42,6 +42,17 @@ class YouTubeIt
         'https://www.googleapis.com'
       end
 
+      def authorization_headers
+        header = {"X-GData-Client"  => "#{@client_id}"}
+        header.merge!("X-GData-Key" => "key=#{@dev_key}") if @dev_key
+        if @authsub_token
+          header.merge!("Authorization"  => "AuthSub token=#{@authsub_token}")
+        elsif @access_token.nil? && @authsub_token.nil? && @user
+          header.merge!("Authorization"  => "GoogleLogin auth=#{auth_token}")
+        end
+        header
+      end
+
       def yt_session(url = nil)
         Faraday.new(:url => (url ? url : base_url), :ssl => {:verify => false}) do |builder|
           if @access_token
