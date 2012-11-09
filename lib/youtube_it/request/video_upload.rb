@@ -468,7 +468,7 @@ class YouTubeIt
         return YouTubeIt::Parser::AnalyticsParser.new(response.body).parse
       end
 
-      def seven_day_analytics(start_date, end_date, user_id)
+      def seven_day_totals(start_date, end_date, user_id)
         opts = {'end-date'=>end_date.strftime("%Y-%m-%d"),'ids' => "channel==#{user_id}", 'metrics' => 'views,comments,favoritesAdded,favoritesRemoved,likes,dislikes,shares,subscribersGained,subscribersLost,uniques','start-date' => start_date.strftime("%Y-%m-%d"),'dimensions' => '7DayTotals'}
         get_url     = "/youtube/analytics/v1/reports?"
         get_url     << opts.collect { |k,p| [k,p].join '=' }.join('&')

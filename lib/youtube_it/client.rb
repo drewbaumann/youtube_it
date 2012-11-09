@@ -297,8 +297,8 @@ class YouTubeIt
       client.get_analytics(opts)
     end
 
-    def seven_day_analytics(start_date = Date.today, end_date = Date.today)
-      client.seven_day_analytics(start_date, end_date, self.user_id)
+    def seven_day_totals(start_date = Date.today, end_date = Date.today)
+      client.seven_day_totals(start_date, end_date, self.user_id)
     end
 
     private
