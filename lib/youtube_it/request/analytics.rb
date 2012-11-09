@@ -5,16 +5,16 @@ class YouTubeIt
       include YouTubeIt::Logging
 
       def initialize *params
-        @end_date = params[:end_date]
+        @end_date = params[:endDate]
         @views = params[:views]
         @comments = params[:comments]
-        @favorites_added = params[:favorites_added]
-        @favorites_removed = params[:favorites_removed]
+        @favorites_added = params[:favoritesAdded]
+        @favorites_removed = params[:favoritesRemoved]
         @likes = params[:likes]
         @dislikes = params[:dislikes]
         @shares = params[:shares]
-        @subscribers_gained = params[:subscribers_gained]
-        @subscribers_lost = params[:subscribers_lost]
+        @subscribers_gained = params[:subscribersGained]
+        @subscribers_lost = params[:subscribersLost]
         @uniques = params[:uniques]
       end
 
