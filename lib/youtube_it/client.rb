@@ -297,6 +297,10 @@ class YouTubeIt
       client.get_analytics(opts)
     end
 
+    def seven_day_analytics(start_date = Date.today, end_date = Date.today)
+      client.seven_day_analytics(start_date, end_date, self.user_id)
+    end
+
     private
 
     def client
@@ -511,6 +515,11 @@ class YouTubeIt
       else
         raise YouTubeIt::Upload::UploadError.new(profile.inspect, response_code)
       end
+    end
+
+    def user_id
+      profile ||= access_token.get("http://gdata.youtube.com/feeds/api/users/default?v=2&alt=json").parsed
+      profile['entry']['author'][0]["yt$userId"]["$t"]
     end
 
     private
