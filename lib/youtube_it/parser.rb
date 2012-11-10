@@ -612,6 +612,33 @@ class YouTubeIt
       end
     end
 
+    class TemporalParser < FeedParser
+
+    private
+      def parse_content(content)
+        if content.is_a? Hash and content["rows"].is_a? Array and content["rows"].length > 0
+          temporal_metrics = []
+          headers = content["columnHeaders"]
+
+          content["rows"].each do |row|
+            metrics = {}
+
+            headers.each_with_index do |column,i|
+              if column["columnType"] == "DIMENSION"
+                metrics[:endDate] = Date.strptime row[i], "%Y-%m-%d"
+              elsif column["columnType"] == "METRIC"
+                metrics[eval(":" + column["name"])] = row[i]
+              end
+            end
+            temporal_metrics.push(YouTubeIt::Request::TemporalMetrics.new(metrics))
+          end
+
+          temporal_metrics.sort { |a,b| a.end_date <=> b.end_date }
+          return temporal_metrics
+        end
+      end
+    end
+
     class AnalyticsParser < FeedParser #:nodoc:
 
     private

@@ -473,9 +473,8 @@ class YouTubeIt
         get_url     = "/youtube/analytics/v1/reports?"
         get_url     << opts.collect { |k,p| [k,p].join '=' }.join('&')
         response    = yt_session('https://www.googleapis.com').get(get_url)
-
-        return YouTubeIt::Parser::AnalyticsParser.new(response.body).parse
-
+        content = JSON.parse(response.body)
+        return YouTubeIt::Parser::TemporalParser.new(content).parse
       end
 
       private

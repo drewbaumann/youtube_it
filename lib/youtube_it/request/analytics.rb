@@ -3,8 +3,10 @@ class YouTubeIt
     class TemporalMetrics #:nodoc:
 
       include YouTubeIt::Logging
+      attr_accessor :end_date, :views, :comments, :favorites_added, :favorites_removed, :likes, :dislikes, :shares, :subscribers_gained, :subscribers_lost, :uniques
 
-      def initialize *params
+
+      def initialize params
         @end_date = params[:endDate]
         @views = params[:views]
         @comments = params[:comments]
@@ -17,7 +19,7 @@ class YouTubeIt
         @subscribers_lost = params[:subscribersLost]
         @uniques = params[:uniques]
       end
-
+      
     end
   end
 end
