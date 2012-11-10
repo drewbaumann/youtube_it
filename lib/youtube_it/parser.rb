@@ -616,8 +616,9 @@ class YouTubeIt
 
     private
       def parse_content(content)
+        temporal_metrics = []
         if content.is_a? Hash and content["rows"].is_a? Array and content["rows"].length > 0
-          temporal_metrics = []
+
           headers = content["columnHeaders"]
 
           content["rows"].each do |row|
@@ -634,8 +635,8 @@ class YouTubeIt
           end
 
           temporal_metrics.sort { |a,b| a.end_date <=> b.end_date }
-          return temporal_metrics
         end
+        temporal_metrics
       end
     end
 

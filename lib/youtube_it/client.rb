@@ -297,8 +297,20 @@ class YouTubeIt
       client.get_analytics(opts)
     end
 
-    def seven_day_totals(start_date = Date.today, end_date = Date.today)
-      client.seven_day_totals(start_date, end_date, self.user_id)
+    def seven_day_totals(start_date = 2.day.ago, end_date = 2.day.ago)
+      client.temporal_totals('7DayTotals',start_date, end_date, self.user_id)
+    end
+
+    def thirty_day_totals(start_date = 2.day.ago, end_date = 2.day.ago)
+      client.temporal_totals('30DayTotals',start_date, end_date, self.user_id)
+    end
+
+    def day_totals(start_date = 2.day.ago, end_date = 2.day.ago)
+      client.temporal_totals('day',start_date, end_date, self.user_id)
+    end
+
+    def month_totals(start_date = 2.day.ago, end_date = 2.day.ago)
+      client.temporal_totals('month',start_date, end_date, self.user_id)
     end
 
     private
